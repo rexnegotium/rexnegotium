@@ -5,12 +5,20 @@ import java.util.Set;
 
 public class User {
 
+	private int id;
     private String name;
     private String email;
     private char[] password;
     private boolean enabled;
     private Date registered;
     private Set<Role> roles;
+    
+    public int getId() {
+    	return id;
+    }
+    public void setId(int id) {
+    	this.id = id;
+    }
     
     public String getName() {
     	return name;

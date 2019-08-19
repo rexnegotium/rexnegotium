@@ -3,14 +3,22 @@ package com.rexnegotium;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
+
+import com.rexnegotium.controller.TaskController;
+import com.rexnegotium.model.Task;
 
 public class RexNegotiumAppStarter {
+	
 	public static final String APP_VERSION = "0.0.1";
+	
+	private static TaskController taskController;
 
 	public static void main(String[] args) throws IOException {
 							
 		BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
-			
+		taskController = new TaskController();
+		
 		System.out.println(String.format("Rex Negotium GTD Personal Planner! v.%s", APP_VERSION));
 		
 		// todo - add simple authentication here;
@@ -31,7 +39,7 @@ public class RexNegotiumAppStarter {
 					break;
 				}
 				case "readall" : {
-					System.out.println("READ ALL method will be called here!");
+					readAll();
 					break;
 				}
 				case "update" : {
@@ -58,6 +66,17 @@ public class RexNegotiumAppStarter {
 				}
 			}
 				
+		}
+		
+	}
+
+	private static void readAll() {
+		System.out.println("performing readAll()... ");
+		List<Task> allTasks = taskController.getAll();
+		
+		// print all tasks
+		for (Task task: allTasks) {
+			System.out.println(task);
 		}
 		
 	}	
