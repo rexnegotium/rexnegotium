@@ -29,7 +29,7 @@ public class RexNegotiumAppStarter {
 			System.out.print("Type command: ");
 			userCommandString = consoleReader.readLine();
 			
-			switch(userCommandString) {
+			switch(userCommandString.toLowerCase()) {
 				case "create" : {
 					System.out.println("CREATE method will be called here!");
 					break;

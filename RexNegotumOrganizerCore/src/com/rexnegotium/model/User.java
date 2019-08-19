@@ -43,6 +43,7 @@ public class User {
     
     /**
      * ATTENTION - IS_enabled
+     * Why? Hint: search for "codeconventions-150003.pdf"
      */
     public boolean isEnabled() {
     	return enabled;
