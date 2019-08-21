@@ -11,6 +11,7 @@ public class Task {
     private Date begintime;
     private Date endtime;
     private boolean completed;
+    
     //private boolean repeatable; // повторение задания, 
     
     
