@@ -1,57 +1,54 @@
 package com.rexnegotium.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
 public class Task {
 	
-	private int tid;
-    private String tname;
+    private String name;
     private String note;
-    private String context;
-    private Date begintime;
-    private Date endtime;
+    private List context;
+    private LocalDateTime begindatetime;
+    private LocalDateTime enddatetime;
     private boolean completed;
+    private boolean isFavourite;
+    private User user;
+  //private Project project;
     
-    //private boolean repeatable; // повторение задания, 
-    
-    
-    public int getTid() {
-    	return tid;
+    public Task() {
+    		
     }
-    public void setTid(int tid) {
-    	this.tid = tid;
-    }
-    
-    public String getTname() {
-    	return tname;
-    }    
-    public void setTname(String tname) {
-    	this.tname = tname;
-    }
-    
-    private String getContext() {
+    	
+    	
+	private String getName() {
+		return name;
+	}
+	private void setName(String name) {
+		this.name = name;
+	}
+	private String getNote() {
+		return note;
+	}
+	private void setNote(String note) {
+		this.note = note;
+	}
+	private List getContext() {
 		return context;
 	}
-	private void setContext(String context) {
+	private void setContext(List context) {
 		this.context = context;
 	}
-	public String getNote() {
-    	return note;
-    }
-    public void setNote(String note) {
-    	this.note = note;
-    }
-	private Date getBegintime() {
-		return begintime;
+	private LocalDateTime getBegindatetime() {
+		return begindatetime;
 	}
-	private void setBegintime(Date begintime) {
-		this.begintime = begintime;
+	private void setBegindatetime(LocalDateTime begindatetime) {
+		this.begindatetime = begindatetime;
 	}
-	private Date getEndtime() {
-		return endtime;
+	private LocalDateTime getEnddatetime() {
+		return enddatetime;
 	}
-	private void setEndtime(Date endtime) {
-		this.endtime = endtime;
+	private void setEnddatetime(LocalDateTime enddatetime) {
+		this.enddatetime = enddatetime;
 	}
 	private boolean isCompleted() {
 		return completed;
@@ -59,15 +56,17 @@ public class Task {
 	private void setCompleted(boolean completed) {
 		this.completed = completed;
 	}
-	
-	/*private boolean isRepeatable() {
-		return repeatable;
+	private boolean isFavourite() {
+		return isFavourite;
 	}
-	private void setRepeatable(boolean repeatable) {
-		this.repeatable = repeatable; 
-	}*/
+	private void setFavourite(boolean isFavourite) {
+		this.isFavourite = isFavourite;
+	}
+	private User getUser() {
+		return user;
+	}
+	private void setUser(User user) {
+		this.user = user;
+	}
     
-	// Возьми за основу класс User, посмотри на форму создания новой задачи в "макете" 
-	// и попробуй создать похожий класс задачи здесь
-	
 }
