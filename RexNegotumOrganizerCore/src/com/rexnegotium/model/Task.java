@@ -8,8 +8,8 @@ public class Task {
     private String name;
     private String note;
     private List context;
-    private LocalDateTime begindatetime;
-    private LocalDateTime enddatetime;
+    private LocalDateTime beginDateTime;
+    private LocalDateTime endDateTime;
     private boolean completed;
     private boolean isFavourite;
     private User user;
@@ -39,16 +39,16 @@ public class Task {
 		this.context = context;
 	}
 	private LocalDateTime getBegindatetime() {
-		return begindatetime;
+		return beginDateTime;
 	}
-	private void setBegindatetime(LocalDateTime begindatetime) {
-		this.begindatetime = begindatetime;
+	private void setBegindatetime(LocalDateTime beginDateTime) {
+		this.beginDateTime = beginDateTime;
 	}
 	private LocalDateTime getEnddatetime() {
-		return enddatetime;
+		return endDateTime;
 	}
-	private void setEnddatetime(LocalDateTime enddatetime) {
-		this.enddatetime = enddatetime;
+	private void setEnddatetime(LocalDateTime endDateTime) {
+		this.endDateTime = endDateTime;
 	}
 	private boolean isCompleted() {
 		return completed;
