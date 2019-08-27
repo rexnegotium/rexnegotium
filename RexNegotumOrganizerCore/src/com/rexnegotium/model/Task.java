@@ -19,7 +19,6 @@ public class Task {
     		
     }
     	
-    	
 	private String getName() {
 		return name;
 	}
