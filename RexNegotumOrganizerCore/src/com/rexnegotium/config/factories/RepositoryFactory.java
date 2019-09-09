@@ -8,16 +8,16 @@ public class RepositoryFactory {
 	private static TaskRepository taskRepository;
 	
 	/**
-	 * Всегда возвращает единственный экземпляр TaskRepository
+	 * Р’СЃРµРіРґР° РІРѕР·РІСЂР°С‰Р°РµС‚ РµРґРёРЅСЃС‚РІРµРЅРЅС‹Р№ СЌРєР·РµРјРїР»СЏСЂ TaskRepository
 	 * 
 	 * @return
 	 */
 	public static TaskRepository getInstanceOfTaskRepository() {
 		
 		if (taskRepository == null) {
-			// сейчас мы будем пользоваться InMemoryTaskRepository
-			// в будующем сможем использовать другие реализации
-			// меняя их как плагины с помощью этой настройки
+			// СЃРµР№С‡Р°СЃ РјС‹ Р±СѓРґРµРј РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ InMemoryTaskRepository
+			// РІ Р±СѓРґСѓСЋС‰РµРј СЃРјРѕР¶РµРј РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґСЂСѓРіРёРµ СЂРµР°Р»РёР·Р°С†РёРё
+			// РјРµРЅСЏСЏ РёС… РєР°Рє РїР»Р°РіРёРЅС‹ СЃ РїРѕРјРѕС‰СЊСЋ СЌС‚РѕР№ РЅР°СЃС‚СЂРѕР№РєРё
 			taskRepository = new InMemoryTaskRepository();
 		}
 		
