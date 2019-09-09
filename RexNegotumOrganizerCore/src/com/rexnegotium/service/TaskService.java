@@ -11,9 +11,9 @@ public class TaskService {
 	private TaskRepository taskRepository;
 	
 	public TaskService() {
-		// фраза getInstance.. говорит нам о том,
-		// что данный метод всегда будет возвращать 
-		// один и тот же объект TaskRepository
+		// С„СЂР°Р·Р° getInstance.. РіРѕРІРѕСЂРёС‚ РЅР°Рј Рѕ С‚РѕРј,
+		// С‡С‚Рѕ РґР°РЅРЅС‹Р№ РјРµС‚РѕРґ РІСЃРµРіРґР° Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰Р°С‚СЊ 
+		// РѕРґРёРЅ Рё С‚РѕС‚ Р¶Рµ РѕР±СЉРµРєС‚ TaskRepository
 		taskRepository = RepositoryFactory.getInstanceOfTaskRepository();
 	}
 	
