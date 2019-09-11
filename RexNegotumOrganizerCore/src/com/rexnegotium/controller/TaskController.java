@@ -21,4 +21,8 @@ public class TaskController {
 		return taskService.getAll();
 	}
 
+	public void createTaskByName(String name) {
+		Task task = taskService.createNewTask();
+		task.setName(name);
+	}
 }

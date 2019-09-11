@@ -19,7 +19,7 @@ import com.rexnegotium.repository.TaskRepository;
 public class InMemoryTaskRepository implements TaskRepository {
 
 	private Map<Integer, Task> entryMap;
-	
+	private Integer mapId = 10000;
 	/** 
 	 * Создаёт экземпляр репозитория и наполняет его тестовыми данными
 	 * 
@@ -29,15 +29,18 @@ public class InMemoryTaskRepository implements TaskRepository {
 	public InMemoryTaskRepository() {
 		entryMap = new ConcurrentHashMap();
 		refreshRepository();
+		entryMap.put()
 	}
+
+
 	
 	/**
 	 * todo - создать полность сформированные тестовые задания здесь
 	 * 
 	 */
 	public void refreshRepository() {
-		entryMap.put(10000, new Task()); // это тестовый код, если тут что-то сломается - можно удалять.
-		entryMap.put(10001, new Task()); // это тестовый код, если тут что-то сломается - можно удалять.
+		//entryMap.put(10000, new Task()); // это тестовый код, если тут что-то сломается - можно удалять.
+		//entryMap.put(10001, new Task()); // это тестовый код, если тут что-то сломается - можно удалять.
 	}
 	
 	@Override
@@ -51,4 +54,18 @@ public class InMemoryTaskRepository implements TaskRepository {
 		return allTasks;
 	}
 
+	@Override
+	public void saveOne(Task task) {
+		entryMap.put(getNextNumber(),task);
+		System.out.println("Task saved...");
+	}
+
+	@Override
+	public Task newTask() {
+		return new Task();
+	}
+
+	private Integer getNextNumber(){
+		return mapId++;
+	}
 }

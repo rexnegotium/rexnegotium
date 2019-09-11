@@ -31,7 +31,8 @@ public class RexNegotiumAppStarter {
 			
 			switch(userCommandString.toLowerCase()) {
 				case "create" : {
-					System.out.println("CREATE method will be called here!");
+					//System.out.println("CREATE method will be called here!");
+					createTask(consoleReader);
 					break;
 				}
 				case "read" : {
@@ -70,6 +71,13 @@ public class RexNegotiumAppStarter {
 		
 	}
 
+	private static void createTask(BufferedReader consoleReader) throws IOException {
+		System.out.println("Enter task name...");
+		String name = consoleReader.readLine();
+		taskController.createTaskByName(name);
+
+	}
+
 	private static void readAll() {
 		System.out.println("performing readAll()... ");
 		List<Task> allTasks = taskController.getAll();
@@ -78,6 +86,5 @@ public class RexNegotiumAppStarter {
 		for (Task task: allTasks) {
 			System.out.println(task);
 		}
-		
-	}	
+	}
 }

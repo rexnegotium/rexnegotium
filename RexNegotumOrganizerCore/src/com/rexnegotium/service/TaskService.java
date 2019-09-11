@@ -21,4 +21,11 @@ public class TaskService {
 		return taskRepository.getAll();
 	}
 
+	/**
+	 *obryvalka */
+	public Task createNewTask(){
+		Task task = taskRepository.newTask();
+		taskRepository.saveOne(task);
+		return task;
+	}
 }
