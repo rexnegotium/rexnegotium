@@ -1,22 +1,35 @@
 package com.rexnegotium.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 public class User {
 
-	private int id;
+	private Integer id;
     private String name;
     private String email;
     private char[] password;
     private boolean enabled;
-    private Date registered;
+    private LocalDate registered;
     private Set<Role> roles;
-    
-    public int getId() {
+
+    public User() {
+    }
+
+    public User(Integer id, String name, String email, char[] password, boolean enabled, LocalDate registered, Set<Role> roles) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.enabled = enabled;
+        this.registered = registered;
+        this.roles = roles;
+    }
+
+    public Integer getId() {
     	return id;
     }
-    public void setId(int id) {
+    public void setId(Integer id) {
     	this.id = id;
     }
     
@@ -52,10 +65,10 @@ public class User {
     	this.enabled = enabled;
     }
     
-    public Date getRegistered() {
+    public LocalDate getRegistered() {
     	return registered;
     }
-    public void setRegistered(Date registered) {
+    public void setRegistered(LocalDate registered) {
     	this.registered = registered;
     }
     

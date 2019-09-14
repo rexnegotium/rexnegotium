@@ -20,4 +20,8 @@ public class UserController {
     public List<User> getAll() {
         return userService.getAll();
     }
+
+    public User create(User user) {
+        return userService.create(user);
+    }
 }

@@ -16,7 +16,11 @@ import java.util.concurrent.ConcurrentHashMap;
 public class InMemoryUserRepository implements UserRepository {
 
     private Map<Integer, User> entryMap;
+    private static int idSequence = 10000;
 
+    private static int getNextId() {
+    	return idSequence++;
+	}
     /**
      * Создаёт экземпляр репозитория и наполняет его тестовыми данными
      * <p>
@@ -32,8 +36,8 @@ public class InMemoryUserRepository implements UserRepository {
      * todo - создать полность сформированные тестовые задания здесь
      */
     public void refreshRepository() {
-        entryMap.put(10000, new User()); // это тестовый код, если тут что-то сломается - можно удалять.
-        entryMap.put(10001, new User()); // это тестовый код, если тут что-то сломается - можно удалять.
+        entryMap.put(getNextId(), new User()); // это тестовый код, если тут что-то сломается - можно удалять.
+        entryMap.put(getNextId(), new User()); // это тестовый код, если тут что-то сломается - можно удалять.
     }
 
     @Override
@@ -47,4 +51,11 @@ public class InMemoryUserRepository implements UserRepository {
         return allUsers;
     }
 
+	@Override
+	public User create(User user) {
+		int id = getNextId();
+		user.setId(id);
+		entryMap.put(id, user);
+    	return user;
+	}
 }
