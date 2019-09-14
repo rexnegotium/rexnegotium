@@ -1,11 +1,14 @@
 package com.rexnegotium.config.factories;
 
 import com.rexnegotium.repository.TaskRepository;
+import com.rexnegotium.repository.UserRepository;
 import com.rexnegotium.repository.inmemory.InMemoryTaskRepository;
+import com.rexnegotium.repository.inmemory.InMemoryUserRepository;
 
 public class RepositoryFactory {
 
 	private static TaskRepository taskRepository;
+	private static UserRepository userRepository;
 	
 	/**
 	 * Всегда возвращает единственный экземпляр TaskRepository
@@ -24,4 +27,11 @@ public class RepositoryFactory {
 		return taskRepository;
 	}
 
+    public static UserRepository getInstanceOfUserRepository() {
+
+		if (userRepository == null) {
+			userRepository = new InMemoryUserRepository();
+		}
+		return userRepository;
+    }
 }
