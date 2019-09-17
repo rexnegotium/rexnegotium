@@ -13,16 +13,19 @@ public class Task {
     private boolean completed;
     private boolean isFavourite;
     private User user;
-    //private Project project;
+    private Integer mapId;
+
 
     public Task() {
 
     }
 
-    public Task(String name, LocalDateTime beginDateTime, LocalDateTime endDateTime) {
+    public Task(String name, String note, LocalDateTime beginDateTime, LocalDateTime endDateTime, boolean isFavourite) {
         this.name = name;
+        this.note = note;
         this.beginDateTime = beginDateTime;
         this.endDateTime = endDateTime;
+        this.isFavourite = isFavourite;
     }
 
     public String getName() {
@@ -33,51 +36,51 @@ public class Task {
         this.name = name;
     }
 
-    private String getNote() {
+    public String getNote() {
         return note;
     }
 
-    private void setNote(String note) {
+    public void setNote(String note) {
         this.note = note;
     }
 
-    private List getContext() {
+    public List getContext() {
         return context;
     }
 
-    private void setContext(List context) {
+    public void setContext(List context) {
         this.context = context;
     }
 
-    private LocalDateTime getBegindatetime() {
+    public LocalDateTime getBegindatetime() {
         return beginDateTime;
     }
 
-    private void setBegindatetime(LocalDateTime beginDateTime) {
+    public void setBegindatetime(LocalDateTime beginDateTime) {
         this.beginDateTime = beginDateTime;
     }
 
-    private LocalDateTime getEnddatetime() {
+    public LocalDateTime getEnddatetime() {
         return endDateTime;
     }
 
-    private void setEnddatetime(LocalDateTime endDateTime) {
+    public void setEnddatetime(LocalDateTime endDateTime) {
         this.endDateTime = endDateTime;
     }
 
-    private boolean isCompleted() {
+    public boolean isCompleted() {
         return completed;
     }
 
-    private void setCompleted(boolean completed) {
+    public void setCompleted(boolean completed) {
         this.completed = completed;
     }
 
-    private boolean isFavourite() {
+    public boolean isFavourite() {
         return isFavourite;
     }
 
-    private void setFavourite(boolean isFavourite) {
+    public void setFavourite(boolean isFavourite) {
         this.isFavourite = isFavourite;
     }
 
@@ -89,11 +92,11 @@ public class Task {
         this.user = user;
     }
 
+//| | - (10000) 'Прочитать 'Рефакторинг: улучшение существующего кода''
+//|v| - (10001) 'Прочитать 'Чистая Архитектура''
+
     @Override
     public String toString() {
-        return "Task{" +
-                "name='" + name + '\'' +
-                ", user=" + user +
-                '}';
+        return "Task { id = " + mapId + " name: " + name + '\'' + ", note: " + note + '\'' + ", task is favourite - " + isFavourite + '}';
     }
 }

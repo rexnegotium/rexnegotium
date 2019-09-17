@@ -3,6 +3,7 @@ package com.rexnegotium;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.rexnegotium.controller.TaskController;
@@ -72,9 +73,32 @@ public class RexNegotiumAppStarter {
 	}
 
 	private static void createTask(BufferedReader consoleReader) throws IOException {
-		System.out.println("Enter task name...");
-		String name = consoleReader.readLine();
-		taskController.createTaskByName(name);
+		String name = "";
+		while (name.isEmpty()){
+			System.out.println("Enter task name. This field can't be empty.");
+			name = consoleReader.readLine();
+		}
+
+		System.out.println("Enter note...");
+		String note = consoleReader.readLine();
+
+		/*System.out.println("Enter task begin date. This field can't be empty.");
+		LocalDateTime beginDateTime = consoleReader.readLine();
+
+		System.out.println("Enter task end date. This field can't be empty.");
+		LocalDateTime endDateTime = consoleReader.readLine();
+		 */
+
+		System.out.println("Do you want to make task favourite? Press Y/N");
+		String answer = consoleReader.readLine();
+		boolean isFavourite;
+		if ("y".equalsIgnoreCase(answer)) {
+			isFavourite = true;
+		}
+		else {
+			isFavourite = false;
+		}
+		taskController.createTaskByName(name, note, isFavourite);
 
 	}
 
