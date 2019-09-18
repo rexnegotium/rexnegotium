@@ -1,6 +1,8 @@
 package com.rexnegotium.model;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Task {
@@ -14,7 +16,9 @@ public class Task {
     private boolean completed;
     private boolean isFavourite;
     private User user;
-
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    //private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
+    //private static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
 
 
     public Task() {
@@ -106,6 +110,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task { id - " + id + " name: " + name + '\'' + ", note: " + note + '\'' + ", task is favourite - " + isFavourite + '}';
+        return String.format(" (%s) -- %s -- Заметка: %s Время начала: %s Время окончания: %s Задание любимое - %s", id, name, note, beginDateTime.format(FORMATTER), endDateTime.format(FORMATTER), isFavourite);
+        //return "Task { Note: " + note + '\'' + ", Task starts on: " +  beginDateTime.format(FORMATTER) + '\'' + ", Task ends on: " +  endDateTime.format(FORMATTER) + '\'' + ", task is favourite - " + isFavourite + '}';
     }
 }

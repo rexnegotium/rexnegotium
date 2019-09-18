@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.rexnegotium.controller.TaskController;
 import com.rexnegotium.model.Task;
@@ -96,28 +98,81 @@ public class RexNegotiumAppStarter {
             }
         }
 
-		System.out.println("Enter note...");
+		System.out.println("Введите заметку...");
 		String note = consoleReader.readLine();
 
-		/*System.out.println("Enter task begin date. This field can't be empty.");
-		LocalDateTime beginDateTime = consoleReader.readLine();
+		String dateString = null;
+		LocalDateTime beginDateTime = null;
+        LocalDateTime endDateTime = null;
 
-		System.out.println("Enter task end date. This field can't be empty.");
-		LocalDateTime endDateTime = consoleReader.readLine();
-		 */
+        while (dateString == null) {
 
-		System.out.println("Do you want to make task favourite? Press Y/N");
+            try {
+
+                System.out.print("Введите дату начала задания в формате dd.MM.yyyy HH:mm -");
+                dateString = consoleReader.readLine();
+
+                if (dateString == null || name.isEmpty()){
+                    System.out.println("Ничего не введено. Повторите ввод!");
+                    dateString = null;
+                    continue;
+                };
+
+				beginDateTime = LocalDateTime.parse(dateString, Task.FORMATTER);
+				LocalDateTime endOfTime = LocalDateTime.parse("01.01.2030 12:00", Task.FORMATTER);
+
+				if (!(beginDateTime.isAfter(LocalDateTime.now()) && beginDateTime.isBefore(endOfTime)))
+				{
+					//System.out.println("bug!");
+				 	throw new IOException();
+				}
+
+            } catch (Exception e) {
+                // todo - log exception here
+                System.out.println("Дата введена в неправильном формате или введена некорректная дата! Попробуйте еще раз!");
+                dateString = null;
+            }
+        }
+
+		dateString = null;
+
+		while (dateString == null) {
+
+			try {
+
+				System.out.print("Введите дату окончания задания в формате dd.MM.yyyy HH:mm -");
+				dateString = consoleReader.readLine();
+
+				if (dateString == null || name.isEmpty()){
+					System.out.println("Ничего не введено. Повторите ввод!");
+					dateString = null;
+					continue;
+				}
+
+				endDateTime = LocalDateTime.parse(dateString, Task.FORMATTER);
+
+				LocalDateTime endOfTime = LocalDateTime.parse("01.01.2030 12:00", Task.FORMATTER);
+				if (!(endDateTime.isAfter(beginDateTime) && beginDateTime.isBefore(endOfTime)))
+				{
+					throw new IOException();
+				}
+
+			} catch (Exception e) {
+				// todo - log exception here
+				System.out.println("Дата введена в неправильном формате или введена некорректная дата! Попробуйте еще раз!");
+				dateString = null;
+			}
+		}
+
+		System.out.println("Вы хотите сделать задание любимым? Нажмите Y/N");
 		String answer = consoleReader.readLine();
-		boolean isFavourite;
+		boolean isFavourite = false;
 		if ("y".equalsIgnoreCase(answer)) {
 			isFavourite = true;
 		}
-		else {
+		else if ("n".equalsIgnoreCase(answer)) {
 			isFavourite = false;
 		}
-		//temp
-		LocalDateTime beginDateTime = null;
-		LocalDateTime endDateTime = null;
 
 		Task task = new Task(name, note, beginDateTime, endDateTime, isFavourite);
 		taskController.createTask(task);
