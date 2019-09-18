@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Task {
 
+    private Integer id;
     private String name;
     private String note;
     private List context;
@@ -13,7 +14,7 @@ public class Task {
     private boolean completed;
     private boolean isFavourite;
     private User user;
-    private Integer mapId;
+
 
 
     public Task() {
@@ -26,6 +27,14 @@ public class Task {
         this.beginDateTime = beginDateTime;
         this.endDateTime = endDateTime;
         this.isFavourite = isFavourite;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -97,6 +106,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task { id = " + mapId + " name: " + name + '\'' + ", note: " + note + '\'' + ", task is favourite - " + isFavourite + '}';
+        return "Task { id - " + id + " name: " + name + '\'' + ", note: " + note + '\'' + ", task is favourite - " + isFavourite + '}';
     }
 }

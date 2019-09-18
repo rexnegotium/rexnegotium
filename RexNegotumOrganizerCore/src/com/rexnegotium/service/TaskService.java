@@ -23,9 +23,7 @@ public class TaskService {
 
 	/**
 	 *obryvalka */
-	public Task createNewTask(){
-		Task task = taskRepository.newTask();
-		taskRepository.saveOne(task);
-		return task;
+	public Task create(Task task) {
+		return taskRepository.create(task);
 	}
 }

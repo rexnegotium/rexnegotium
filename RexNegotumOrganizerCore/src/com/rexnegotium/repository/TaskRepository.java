@@ -21,8 +21,8 @@ public interface TaskRepository {
 	 * @return
 	 */
 	public List<Task> getAll();
-	public void saveOne(Task task);
 
+	Task create(Task task);
 
 	public Task newTask();
 

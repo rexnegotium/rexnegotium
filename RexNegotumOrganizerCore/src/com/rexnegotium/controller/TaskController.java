@@ -22,12 +22,16 @@ public class TaskController {
 		return taskService.getAll();
 	}
 
-	public void createTaskByName(String name, String note, boolean isFavourite) {   //LocalDateTime beginDateTime, LocalDateTime endDateTime,
+	public Task createTask(Task task) {
+		return taskService.create(task);
+	}
+
+	/*public void createTaskByName(String name, String note, boolean isFavourite) {   //LocalDateTime beginDateTime, LocalDateTime endDateTime,
 		Task task = taskService.createNewTask();
 		task.setName(name);
 		task.setNote(note);
 		//task.setBegindatetime(beginDateTime);
 		//task.setEnddatetime(endDateTime);
 		task.setFavourite(isFavourite);
-	}
+	}*/
 }

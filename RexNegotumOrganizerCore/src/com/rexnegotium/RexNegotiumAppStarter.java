@@ -73,11 +73,28 @@ public class RexNegotiumAppStarter {
 	}
 
 	private static void createTask(BufferedReader consoleReader) throws IOException {
-		String name = "";
-		while (name.isEmpty()){
-			System.out.println("Enter task name. This field can't be empty.");
-			name = consoleReader.readLine();
-		}
+        System.out.println("Создание нового задания");
+        // 1. - Проверяем имя - не должно быть пустым
+        String name =  null;
+        while (name == null) {
+
+            try {
+
+                System.out.print("Введите имя задания:");
+                name = consoleReader.readLine();
+
+                if (name == null || name.isEmpty()){
+                    System.out.println("Введено пустое имя. Повторите ввод!");
+                    name = null;
+                    continue;
+                };
+
+            } catch (IOException e) {
+                // todo - log exception here
+                System.out.println("Произошла ошибка!");
+                name = null;
+            }
+        }
 
 		System.out.println("Enter note...");
 		String note = consoleReader.readLine();
@@ -98,7 +115,12 @@ public class RexNegotiumAppStarter {
 		else {
 			isFavourite = false;
 		}
-		taskController.createTaskByName(name, note, isFavourite);
+		//temp
+		LocalDateTime beginDateTime = null;
+		LocalDateTime endDateTime = null;
+
+		Task task = new Task(name, note, beginDateTime, endDateTime, isFavourite);
+		taskController.createTask(task);
 
 	}
 

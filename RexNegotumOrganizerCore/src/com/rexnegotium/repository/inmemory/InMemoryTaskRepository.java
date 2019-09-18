@@ -19,7 +19,6 @@ import com.rexnegotium.repository.TaskRepository;
 public class InMemoryTaskRepository implements TaskRepository {
 
 	private Map<Integer, Task> entryMap;
-	private Integer mapId = 10000;
     private static int idSequence = 10000;
 
     private static int getNextId() {
@@ -48,14 +47,7 @@ public class InMemoryTaskRepository implements TaskRepository {
 		for (Map.Entry<Integer, Task> taskEntry : entryMap.entrySet()) {
 			allTasks.add(taskEntry.getValue());
 		}
-		
 		return allTasks;
-	}
-
-	@Override
-	public void saveOne(Task task) {
-		entryMap.put(getNextNumber(),task);
-		System.out.println("Task saved...");
 	}
 
 	@Override
@@ -63,13 +55,13 @@ public class InMemoryTaskRepository implements TaskRepository {
 		return new Task();
 	}
 
-	private Integer getNextNumber(){
-		return mapId++;
+	@Override
+	public Task create(Task task) {
+		int id = getNextId();
+		task.setId(id);
+		entryMap.put(id, task);
+		System.out.println("Task saved...");
+		return task;
 	}
-
-	public Integer getMapId() {
-		return mapId;
-	}
-
-
 }
+
