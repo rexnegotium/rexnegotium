@@ -1,7 +1,6 @@
 package com.rexnegotium.service;
 
 import java.util.List;
-
 import com.rexnegotium.config.factories.RepositoryFactory;
 import com.rexnegotium.model.Task;
 import com.rexnegotium.repository.TaskRepository;

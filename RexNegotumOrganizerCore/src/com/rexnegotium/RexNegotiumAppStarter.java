@@ -5,9 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import com.rexnegotium.controller.TaskController;
 import com.rexnegotium.model.Task;
 
@@ -75,14 +72,14 @@ public class RexNegotiumAppStarter {
 	}
 
 	private static void createTask(BufferedReader consoleReader) throws IOException {
-        System.out.println("Создание нового задания");
+        System.out.println("Создание нового задания ");
         // 1. - Проверяем имя - не должно быть пустым
         String name =  null;
         while (name == null) {
 
             try {
 
-                System.out.print("Введите имя задания:");
+                System.out.print("Введите имя задания: ");
                 name = consoleReader.readLine();
 
                 if (name == null || name.isEmpty()){
@@ -116,7 +113,7 @@ public class RexNegotiumAppStarter {
                     System.out.println("Ничего не введено. Повторите ввод!");
                     dateString = null;
                     continue;
-                };
+                }
 
 				beginDateTime = LocalDateTime.parse(dateString, Task.FORMATTER);
 				LocalDateTime endOfTime = LocalDateTime.parse("01.01.2030 12:00", Task.FORMATTER);

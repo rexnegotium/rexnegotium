@@ -1,6 +1,5 @@
 package com.rexnegotium.model;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -105,12 +104,19 @@ public class Task {
         this.user = user;
     }
 
-//| | - (10000) 'Прочитать 'Рефакторинг: улучшение существующего кода''
-//|v| - (10001) 'Прочитать 'Чистая Архитектура''
+    //| | - (10000) 'Прочитать 'Рефакторинг: улучшение существующего кода''
+    //|v| - (10001) 'Прочитать 'Чистая Архитектура''
+
+
 
     @Override
     public String toString() {
-        return String.format(" (%s) -- %s -- Заметка: %s Время начала: %s Время окончания: %s Задание любимое - %s", id, name, note, beginDateTime.format(FORMATTER), endDateTime.format(FORMATTER), isFavourite);
-        //return "Task { Note: " + note + '\'' + ", Task starts on: " +  beginDateTime.format(FORMATTER) + '\'' + ", Task ends on: " +  endDateTime.format(FORMATTER) + '\'' + ", task is favourite - " + isFavourite + '}';
+        String favStar;
+        if (isFavourite == true) {
+            favStar = Character.toString((char) 9734);
+        } else
+            favStar = Character.toString((char) 11044);
+
+        return String.format(" %s  (%s) -- %s -- Заметка: %s Время начала: %s Время окончания: %s ", favStar, id, name, note, beginDateTime.format(FORMATTER), endDateTime.format(FORMATTER));
     }
 }
