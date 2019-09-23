@@ -1,7 +1,6 @@
 package com.rexnegotium.controller;
 
 import java.util.List;
-
 import com.rexnegotium.model.Task;
 import com.rexnegotium.service.TaskService;
 
@@ -19,6 +18,10 @@ public class TaskController {
 	
 	public List<Task> getAll() {
 		return taskService.getAll();
+	}
+
+	public Task createTask(Task task) {
+		return taskService.create(task);
 	}
 
 }

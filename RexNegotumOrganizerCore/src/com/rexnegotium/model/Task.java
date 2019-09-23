@@ -1,10 +1,12 @@
 package com.rexnegotium.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Task {
-	
+
+    private Integer id;
     private String name;
     private String note;
     private List context;
@@ -13,59 +15,108 @@ public class Task {
     private boolean completed;
     private boolean isFavourite;
     private User user;
-  //private Project project;
-    
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    //private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
+    //private static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
+
+
     public Task() {
-    		
+
     }
-    	
-	private String getName() {
-		return name;
-	}
-	private void setName(String name) {
-		this.name = name;
-	}
-	private String getNote() {
-		return note;
-	}
-	private void setNote(String note) {
-		this.note = note;
-	}
-	private List getContext() {
-		return context;
-	}
-	private void setContext(List context) {
-		this.context = context;
-	}
-	private LocalDateTime getBegindatetime() {
-		return beginDateTime;
-	}
-	private void setBegindatetime(LocalDateTime beginDateTime) {
-		this.beginDateTime = beginDateTime;
-	}
-	private LocalDateTime getEnddatetime() {
-		return endDateTime;
-	}
-	private void setEnddatetime(LocalDateTime endDateTime) {
-		this.endDateTime = endDateTime;
-	}
-	private boolean isCompleted() {
-		return completed;
-	}
-	private void setCompleted(boolean completed) {
-		this.completed = completed;
-	}
-	private boolean isFavourite() {
-		return isFavourite;
-	}
-	private void setFavourite(boolean isFavourite) {
-		this.isFavourite = isFavourite;
-	}
-	private User getUser() {
-		return user;
-	}
-	private void setUser(User user) {
-		this.user = user;
-	}
-    
+
+    public Task(String name, String note, LocalDateTime beginDateTime, LocalDateTime endDateTime, boolean isFavourite) {
+        this.name = name;
+        this.note = note;
+        this.beginDateTime = beginDateTime;
+        this.endDateTime = endDateTime;
+        this.isFavourite = isFavourite;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public List getContext() {
+        return context;
+    }
+
+    public void setContext(List context) {
+        this.context = context;
+    }
+
+    public LocalDateTime getBegindatetime() {
+        return beginDateTime;
+    }
+
+    public void setBegindatetime(LocalDateTime beginDateTime) {
+        this.beginDateTime = beginDateTime;
+    }
+
+    public LocalDateTime getEnddatetime() {
+        return endDateTime;
+    }
+
+    public void setEnddatetime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public boolean isFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(boolean isFavourite) {
+        this.isFavourite = isFavourite;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    //| | - (10000) 'Прочитать 'Рефакторинг: улучшение существующего кода''
+    //|v| - (10001) 'Прочитать 'Чистая Архитектура''
+
+
+
+    @Override
+    public String toString() {
+        String favStar;
+        if (isFavourite == true) {
+            favStar = Character.toString((char) 9734);
+        } else
+            favStar = Character.toString((char) 11044);
+
+        return String.format(" %s  (%s) -- %s -- Заметка: %s Время начала: %s Время окончания: %s ", favStar, id, name, note, beginDateTime.format(FORMATTER), endDateTime.format(FORMATTER));
+    }
 }

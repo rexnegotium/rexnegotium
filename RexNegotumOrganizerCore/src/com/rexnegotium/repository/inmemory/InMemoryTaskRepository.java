@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import com.rexnegotium.config.factories.RepositoryFactory;
 import com.rexnegotium.model.Task;
 import com.rexnegotium.repository.TaskRepository;
 
@@ -19,7 +17,12 @@ import com.rexnegotium.repository.TaskRepository;
 public class InMemoryTaskRepository implements TaskRepository {
 
 	private Map<Integer, Task> entryMap;
-	
+    private static int idSequence = 10000;
+
+    private static int getNextId() {
+        return idSequence++;
+    }
+
 	/** 
 	 * Создаёт экземпляр репозитория и наполняет его тестовыми данными
 	 * 
@@ -28,18 +31,13 @@ public class InMemoryTaskRepository implements TaskRepository {
 	 */
 	public InMemoryTaskRepository() {
 		entryMap = new ConcurrentHashMap();
-		refreshRepository();
 	}
-	
+
 	/**
 	 * todo - создать полность сформированные тестовые задания здесь
 	 * 
 	 */
-	public void refreshRepository() {
-		entryMap.put(10000, new Task()); // это тестовый код, если тут что-то сломается - можно удалять.
-		entryMap.put(10001, new Task()); // это тестовый код, если тут что-то сломается - можно удалять.
-	}
-	
+
 	@Override
 	public List<Task> getAll() {
 		List<Task> allTasks = new ArrayList();
@@ -47,8 +45,21 @@ public class InMemoryTaskRepository implements TaskRepository {
 		for (Map.Entry<Integer, Task> taskEntry : entryMap.entrySet()) {
 			allTasks.add(taskEntry.getValue());
 		}
-		
 		return allTasks;
 	}
 
+	@Override
+	public Task newTask() {
+		return new Task();
+	}
+
+	@Override
+	public Task create(Task task) {
+		int id = getNextId();
+		task.setId(id);
+		entryMap.put(id, task);
+		System.out.println("Task saved...");
+		return task;
+	}
 }
+
