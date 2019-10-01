@@ -24,4 +24,7 @@ public class TaskController {
 		return taskService.create(task);
 	}
 
+    public Task findTaskById(Integer id) throws Exception {
+	    return taskService.findTaskById(id);
+        }
 }

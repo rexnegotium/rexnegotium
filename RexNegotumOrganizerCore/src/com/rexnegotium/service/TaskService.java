@@ -20,9 +20,13 @@ public class TaskService {
 		return taskRepository.getAll();
 	}
 
-	/**
+    /**
 	 *obryvalka */
 	public Task create(Task task) {
 		return taskRepository.create(task);
 	}
+
+    public Task findTaskById(Integer id) throws Exception {
+        return taskRepository.findTaskById(id);
+    }
 }
