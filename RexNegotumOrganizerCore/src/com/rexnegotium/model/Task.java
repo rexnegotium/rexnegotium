@@ -108,7 +108,6 @@ public class Task {
     //|v| - (10001) 'Прочитать 'Чистая Архитектура''
 
 
-
     @Override
     public String toString() {
         String favStar;
