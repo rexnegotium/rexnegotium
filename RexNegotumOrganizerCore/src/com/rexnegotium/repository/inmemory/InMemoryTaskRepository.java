@@ -1,5 +1,6 @@
 package com.rexnegotium.repository.inmemory;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,13 +32,27 @@ public class InMemoryTaskRepository implements TaskRepository {
 	 */
 	public InMemoryTaskRepository() {
 		entryMap = new ConcurrentHashMap();
+		refreshRepository();
+	}
+
+	public void refreshRepository() {
+
+		int firstTaskId = 10000;
+		int secondTaskId = 100001;
+
+		Task firstTask = new Task("Head First Java", null, LocalDateTime.of(2019, 6, 1, 0,0), null, true);
+		firstTask.setId(firstTaskId);
+		Task secondTask = new Task("Head First Design Patterns", null, LocalDateTime.of(2019, 6, 1, 0,0), null, true);
+		secondTask.setId(secondTaskId);
+
+		entryMap.put(firstTaskId, firstTask);
+		entryMap.put(secondTaskId, secondTask);
 	}
 
 	/**
 	 * todo - создать полность сформированные тестовые задания здесь
 	 * 
 	 */
-
 	@Override
 	public List<Task> getAll() {
 		List<Task> allTasks = new ArrayList();
