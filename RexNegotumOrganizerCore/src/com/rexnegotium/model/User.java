@@ -1,6 +1,7 @@
 package com.rexnegotium.model;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Set;
 
 public class User {
@@ -16,8 +17,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String name, String email, char[] password, boolean enabled, LocalDate registered, Set<Role> roles) {
-        this.id = id;
+    public User(String name, String email, char[] password, boolean enabled, LocalDate registered, Set<Role> roles) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -77,5 +77,22 @@ public class User {
     }
     public void setRoles(Set<Role> roles) {
     	this.roles = roles;
+    }
+
+    /**
+     *  Обрати внимание - пароль мы не вываодим! Нигде и никогда!
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", enabled=" + enabled +
+                ", registered=" + registered +
+                ", roles=" + roles +
+                '}';
     }
 }

@@ -17,6 +17,11 @@ public class UserController {
         System.out.println("TaskController initialized!");
     }
 
+    // todo - throws RNException here
+    public User get(Integer userId) throws Exception {
+        return userService.get(userId);
+    }
+
     public List<User> getAll() {
         return userService.getAll();
     }

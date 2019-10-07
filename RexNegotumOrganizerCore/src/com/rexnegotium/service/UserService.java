@@ -14,6 +14,11 @@ public class UserService {
         userRepository = RepositoryFactory.getInstanceOfUserRepository();
     }
 
+    // todo - throws RNException here
+    public User get(Integer userId) throws Exception {
+        return userRepository.get(userId);
+    }
+
     public List<User> getAll() {
         return userRepository.getAll();
     }

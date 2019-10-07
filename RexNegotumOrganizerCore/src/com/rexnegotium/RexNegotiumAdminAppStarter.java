@@ -48,7 +48,7 @@ public class RexNegotiumAdminAppStarter {
 					break;
 				}
 				case "read" : {
-					System.out.println("READ method will be called here!");
+					read(consoleReader);
 					break;
 				}
 				case "readall" : {
@@ -191,20 +191,84 @@ public class RexNegotiumAdminAppStarter {
 		Set<Role> roles = new HashSet<>();
 		roles.add(Role.ROLE_USER);
 
-		User user = new User(null, name, email, password, enabled, registeredDate, roles);
+		User user = new User(name, email, password, enabled, registeredDate, roles);
 
 		userController.create(user);
 
 	}
 
+	private static void read(BufferedReader consoleReader) {
+		System.out.println("Чтение данных пользователя...");
+		User user = null;
+
+		// 1. - Проверяем переданный айдишник - не должен быть пустым. Доложен быть положительным числом.
+		Integer userId =  null;
+		while (userId == null) {
+
+			try {
+
+				System.out.print("Введите ID пользователя:");
+				String userIdString = consoleReader.readLine();
+
+				if (userIdString == null || userIdString.isEmpty()){
+					System.out.println("Введено пустой ID. Повторите ввод!");
+					userId = null;
+					continue;
+				};
+
+				// Проверяем, что ID - положительное число, а не какая-то левая строка.
+				// Проверку производим с помощью регулярных выражений.
+				// Паттерн взял отсюда: https://stackoverflow.com/questions/5998247/regular-expression-in-java-for-positive-integers-excluding-those-starting-with
+				String regex = "[1-9][0-9]{0,8}";
+				Pattern pattern = Pattern.compile(regex);
+				Matcher matcher = pattern.matcher(userIdString);
+				if (!matcher.matches()) {
+					System.out.println("Введеный ID имеет неправильный формат. Повторите ввод!");
+					userId = null;
+					continue;
+				}
+
+				try {
+					userId = Integer.parseInt(userIdString);
+				} catch (NumberFormatException e) {
+					System.out.println("Введеный ID имеет неправильный формат. Повторите ввод!");
+					userId = null;
+					continue;
+				}
+
+			} catch (IOException e) {
+				// todo - log exception here
+				System.out.println("При попытке чтения пользователя произошла ошибка!");
+				userId = null;
+				return;
+			}
+		}
+
+		try {
+			user = userController.get(userId);
+		} catch (Exception e) {
+			// todo - log exception here
+			e.printStackTrace();
+			System.out.println(String.format("При чтении пользователя с id=|%s| произошла ошибка!%n%s", userId, e.getMessage()));
+			return;
+		}
+
+		if (user != null) {
+			System.out.println(user);
+		} else {
+			System.out.println(String.format("Пользователь с Id = |%d| не найден!"));
+			return;
+		}
+
+	};
+
 	private static void readAll() {
 		System.out.println("performing readAll()... ");
 		List<User> allUsers = userController.getAll();
 		
-		// print all tasks
+		// print all users
 		for (User user: allUsers) {
 			System.out.println(user);
 		}
-		
 	}	
 }

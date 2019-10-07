@@ -9,4 +9,8 @@ public interface UserRepository {
     public List<User> getAll();
 
     User create(User user);
+
+    // todo - throws RepositoryException
+    User get(Integer userId) throws Exception;
+
 }
