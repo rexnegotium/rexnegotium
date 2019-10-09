@@ -5,19 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
 import com.rexnegotium.model.Task;
 import com.rexnegotium.repository.TaskRepository;
 
 /**
  * Хранилище задач, которое мы будем использовать для тестов.
  * Инициализируется при первом обращении тестовыми данными
- * 
- * @author Ivan Senchukov
  *
+ * @author Ivan Senchukov
  */
 public class InMemoryTaskRepository implements TaskRepository {
 
-	private Map<Integer, Task> entryMap;
+    private Map<Integer, Task> entryMap;
     private static int idSequence = 10000;
 
     private static int getNextId() {
@@ -53,28 +53,34 @@ public class InMemoryTaskRepository implements TaskRepository {
 	 * todo - создать полность сформированные тестовые задания здесь
 	 * 
 	 */
-	@Override
-	public List<Task> getAll() {
-		List<Task> allTasks = new ArrayList();
-		
-		for (Map.Entry<Integer, Task> taskEntry : entryMap.entrySet()) {
-			allTasks.add(taskEntry.getValue());
-		}
-		return allTasks;
-	}
+    @Override
+    public List<Task> getAll() {
+        List<Task> allTasks = new ArrayList();
 
-	@Override
-	public Task newTask() {
-		return new Task();
-	}
+        for (Map.Entry<Integer, Task> taskEntry : entryMap.entrySet()) {
+            allTasks.add(taskEntry.getValue());
+        }
+        return allTasks;
+    }
 
-	@Override
-	public Task create(Task task) {
-		int id = getNextId();
-		task.setId(id);
-		entryMap.put(id, task);
-		System.out.println("Task saved...");
-		return task;
-	}
+    @Override
+    public Task create(Task task) {
+        int id = getNextId();
+        task.setId(id);
+        entryMap.put(id, task);
+        System.out.println("Task saved...");
+        return task;
+    }
+
+    @Override
+    public Task findTaskById(Integer id) throws Exception {
+        // todo - логгировать нахождение таска.
+        Task foundTask = entryMap.get(id);
+        if ((foundTask != null) && !(foundTask.getId().equals(id))) {
+            // todo - перенести исключение в RepositoryException
+            throw new Exception();
+        }
+        return foundTask;
+    }
 }
 

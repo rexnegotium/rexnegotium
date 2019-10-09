@@ -22,8 +22,10 @@ public interface TaskRepository {
 	 */
 	public List<Task> getAll();
 
+	public Task findTaskById(Integer id) throws Exception;
+
 	Task create(Task task);
 
-	public Task newTask();
+
 
 }
