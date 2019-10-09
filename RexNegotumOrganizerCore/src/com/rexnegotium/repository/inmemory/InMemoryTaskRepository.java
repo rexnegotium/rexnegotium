@@ -48,11 +48,6 @@ public class InMemoryTaskRepository implements TaskRepository {
     }
 
     @Override
-    public Task newTask() {
-        return new Task();
-    }
-
-    @Override
     public Task create(Task task) {
         int id = getNextId();
         task.setId(id);
@@ -63,10 +58,10 @@ public class InMemoryTaskRepository implements TaskRepository {
 
     @Override
     public Task findTaskById(Integer id) throws Exception {
-        // как вернуть таск в мейн?
-        System.out.println("Task found...");
+        // todo - логгировать нахождение таска.
         Task foundTask = entryMap.get(id);
-        if ((foundTask == null) && !(foundTask.getId().equals(id)) && !(entryMap.containsKey(id))) {
+        if ((foundTask != null) && !(foundTask.getId().equals(id))) {
+            // todo - перенести исключение в RepositoryException
             throw new Exception();
         }
         return foundTask;

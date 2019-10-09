@@ -26,6 +26,6 @@ public interface TaskRepository {
 
 	Task create(Task task);
 
-	public Task newTask();
+
 
 }

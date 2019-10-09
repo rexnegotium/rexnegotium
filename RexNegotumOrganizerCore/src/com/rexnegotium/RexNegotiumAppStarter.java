@@ -184,7 +184,7 @@ public class RexNegotiumAppStarter {
         }
     }
 
-    private static void read(BufferedReader consoleReader) throws IOException {
+    private static void read(BufferedReader consoleReader)  { //throws IOException
         System.out.println("performing read()... ");
         System.out.println("Введите ID");
         String idInput = null;
@@ -201,14 +201,14 @@ public class RexNegotiumAppStarter {
 
                 Integer id = Integer.parseInt(idInput);
                 Task foundTask = taskController.findTaskById(id);
-                System.out.println(foundTask);
-            } catch (IOException e) {
-                System.out.println("Не верно введен ID");
-                idInput = null;
+                if (foundTask == null) {
+                    System.out.println("Нет задания с таким ID");
+                } else System.out.println(foundTask);
             }
             catch (Exception e) {
-                System.out.println("Ошибка при обработке ID");
+                System.out.println("Ошибка при поиске задания или не верно введен ID");
                 idInput = null;
+                break;
             }
 
         }
